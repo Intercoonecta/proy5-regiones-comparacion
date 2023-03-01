@@ -6,5 +6,9 @@
 - **Lenguaje:** Python principalmente, pero algunos también pueden trabajar en R
 - **Horario:** Disponible 15:00-17:00 Trabajo en grupo Proyectos B
 
+<<<<<<< HEAD
 
 Jesi, yo también estoy por acá!!
+=======
+Judith
+>>>>>>> ed3363b7e9c8ee0f39ecad2fe6d3b2eb8e933c67
