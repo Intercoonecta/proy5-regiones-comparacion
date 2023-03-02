@@ -1,1 +1,158 @@
-xxxxx
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ git config --global --list
+user.email=jesipaz@mdp.edu.ar
+user.name=Jesica Paz
+core.autocrlf=true
+core.editor=nano-w
+credential.helper=store
+push.default=current
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ git clone https://github.com/Intercoonecta/proy5-regiones-comparacion.git
+Cloning into 'proy5-regiones-comparacion'...
+remote: Enumerating objects: 60, done.
+remote: Counting objects: 100% (60/60), done.
+remote: Compressing objects: 100% (41/41), done.
+remote: Total 60 (delta 22), reused 29 (delta 10), pack-reused 0
+Receiving objects: 100% (60/60), 135.92 KiB | 4.12 MiB/s, done.
+
+Resolving deltas: 100% (22/22), done.
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ cd g/^C
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ /g/hackaton2/Je/proy5-regiones-comparacion/
+bash: /g/hackaton2/Je/proy5-regiones-comparacion/: Is a directory
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ cd //g/hackaton2/Je/proy5-regiones-comparacion/
+bash: cd: //g/hackaton2/Je/proy5-regiones-comparacion/: No such file or directory
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je
+$ cd /g/hackaton2/Je/proy5-regiones-comparacion/
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git add probandojesi3.txt
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   probandojesi3.txt
+
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git commit -m "probandodenuevo"
+[main c8f8e6d] probandodenuevo
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 probandojesi3.txt
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 276 bytes | 276.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Intercoonecta/proy5-regiones-comparacion.git
+   fbb6d1c..c8f8e6d  main -> main
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git pull
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 9 (delta 3), reused 7 (delta 2), pack-reused 0
+Unpacking objects: 100% (9/9), 72.47 KiB | 69.00 KiB/s, done.
+From https://github.com/Intercoonecta/proy5-regiones-comparacion
+   c8f8e6d..fb6520f  main       -> origin/main
+Updating c8f8e6d..fb6520f
+Fast-forward
+ Guayaquil_ecoregion_diversity2.png | Bin 0 -> 70588 bytes
+ Parte Jesi/textoprueba             |   1 -
+ Parte_Judith/OBIS_project5.R       | 361 +++++++++++++++++++++++++++++++++++++
+ 3 files changed, 361 insertions(+), 1 deletion(-)
+ create mode 100644 Guayaquil_ecoregion_diversity2.png
+ delete mode 100644 Parte Jesi/textoprueba
+ create mode 100644 Parte_Judith/OBIS_project5.R
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Parte_Jesi/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git add Parte_Jesi/
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git commit -m "agregeé carpeta"
+[main 5f6408d] agregeé carpeta
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Parte_Jesi/textoprueba
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 320 bytes | 320.00 KiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Intercoonecta/proy5-regiones-comparacion.git
+   fb6520f..5f6408d  main -> main
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git pull
+Already up to date.
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Parte_Jesi/.RData
+        Parte_Jesi/.Rhistory
+        Parte_Jesi/Data/
+        Parte_Jesi/rdatosespacialesjesi_zonagaviotines_2.R
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git add Parte_Jesi/rdatosespacialesjesi_zonagaviotines_2.R
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git commit -m "actualizacion archivoR"
+[main 0b94b28] actualizacion archivoR
+ 1 file changed, 144 insertions(+)
+ create mode 100644 Parte_Jesi/rdatosespacialesjesi_zonagaviotines_2.R
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$ git push
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 2.66 KiB | 1.33 MiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Intercoonecta/proy5-regiones-comparacion.git
+   5f6408d..0b94b28  main -> main
+
+Jesica@LAPTOP-0TUN3040 MINGW64 /g/hackaton2/Je/proy5-regiones-comparacion (main)
+$
