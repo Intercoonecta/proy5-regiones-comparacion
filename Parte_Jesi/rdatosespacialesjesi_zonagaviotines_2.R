@@ -149,3 +149,5 @@ Mapagen2 <- ggplot()+
      theme(legend.position = "right")
 
 #LAT> -60 & LAT< -25 & LON> -70 & LON< -40
+
+#cc
