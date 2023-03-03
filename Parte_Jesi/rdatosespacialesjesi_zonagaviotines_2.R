@@ -79,6 +79,7 @@ ecoreg$geometry[4]##"Rio de la Plata" xmin:-61.89776 ymin: -36.55243 xmax: -54.9
 ecoreg$geometry[5]##"Rio Grande"  xmin: -55.39115 ymin: -35.64241 xmax: -45.83059 ymax: -26.84257
 ecoreg$geometry[6]##Uruguay-Buenos Aires Shelf" xmin: -65.4206 ymin: -41.25759 xmax: -50.38224 ymax: -30.7737
 
+?st_as_text
 
 
 #aca para probar descargar los datos ORBIS
@@ -93,52 +94,58 @@ library(tidyr) # for `gather()`
 library(readr) # for `write_tsv()`
 library(leaflet)
 library(lubridate)
-
-fortify.shape <- function(x){
-  x@data$id <- rownames(x@data)
-  x.f <- fortify(x, region = "id")
-  x.join <- inner_join(x.f, x@data, by = "id")
-}
-
-subset.shape <- function(x, domain){
-  x.subset <- filter(x, long > domain[1] & 
-                       long < domain[2] & 
-                       lat > domain[3] & 
-                       lat < domain[4])
-  x.subset
-}
-
-
-?occurrence
-
 library(sf)
 library(dplyr)
+
 ACN_orbis=occurrence(scientificname = "Thalassarche melanophris", startdate = as.Date("2000-01-01"), enddate = as.Date("2022-12-31"))
 str(ACN_orbis)
 summary(ACN_orbis$decimalLongitude)
-
 write.csv(ACN_orbis,"./Data/ACN_orbis.csv")
-ACN_orbis=read.csv("./Data/ACN_orbis.csv", header=T)
+getwd()
+ACN_orbis=read.csv("./proy5-regiones-comparacion/Parte_Jesi/Data/ACN_orbis.csv", header=T)
 crs=CRS("+init=epsg:4326")
 ACN_orbis_sp=SpatialPointsDataFrame(ACN_orbis[,c("decimalLongitude","decimalLatitude")],data=ACN_orbis, proj4string= crs)#identifica la espacialidad
 plot(ACN_orbis_sp, axes=T)
 
+
 ACN_orbi2 <- ACN_orbis %>% select(date_year,scientificName,decimalLatitude,decimalLongitude,month) %>% 
-  mutate(YEAR=date_year,LAT=decimalLatitude,LON=decimalLongitude) %>% filter(LAT> -55 & LAT< -30 & LON> -70 & LON< -50)
+  mutate(YEAR=date_year,LAT=decimalLatitude,LON=decimalLongitude) %>% filter(LAT> -60 & LAT< -25 & LON> -70 & LON< -40)
 #ACN_orbi3 <- ACN_orbi2%>% filter(LAT> -55) 
 #ACN_orbi4 <- ACN_orbi3%>% filter(LAT< -30)
 ACN_orbi2_sp=SpatialPointsDataFrame(ACN_orbi2[,c("LON","LAT")],data=ACN_orbi2, proj4string= crs)#identifica la espacialidad
 plot(ACN_orbi2_sp, axes=T)
-plot(st_geometry(st_read("./Data/America_del_sur.shp")), add=T) #abro los datos, los tengo guardatos en mi carpeta data
+plot(st_geometry(st_read("./proy5-regiones-comparacion/Parte_Jesi/Data/America_del_sur.shp")), add=T) #abro los datos, los tengo guardatos en mi carpeta data
 levels(as.factor(ACN_orbi2_sp$YEAR)) # "2000" "2001" "2002" "2006" "2007" "2008" "2019"
 
 
-summary(ACN_orbi4$LON)
+
+tierra <- rnaturalearth::ne_countries(returnclass = "sf")
+ACN_orbi2_sp
+ACN_orbi2_sf<-st_as_sf(ACN_orbi2_sp)
+ecoreg=st_read("./proy5-regiones-comparacion/Parte_Jesi/Data/ecoregiones_jes.shp")
+ecoreg$ECOREGION
+ramp = rainbow(length(unique(ecoreg$ECOREGION)))
+colors = ramp[as.factor(ecoreg$ECOREGION)]
+
+plot(st_geometry(ecoreg), axis=T,col=colors, border="black") #xlim=c(-90,-75), ylim=c(-5, 2), col=colors, border="black")
+plot(st_geometry(tierra), col="grey", add=T, border="black")
+plot(st_geometry(ACN_orbi2_sf), add=T, pch=21, col="black", bg="330066", cex= 0.8)
 
 
+levels(as.factor(ACN_orbi2_sf$YEAR))
+  windows()
+  
+Mapagen2 <- ggplot()+
+  geom_sf(data = ecoreg, aes(fill= ECOREGION),alpha = 0.3)+
+  #geom_sf_text(data = ecoreg, aes(label= ECOREGION), colour = "black",size=2)+#https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/
+  geom_sf(data = tierra,color = "black", fill="grey")+
+  geom_sf_text(data = tierra, aes(label= name), colour = "black",size=3)+#https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/
+  geom_sf(data= ACN_orbi2_sf, cex=1, mapping = aes(color=as.factor(YEAR)))+
+  scale_colour_manual("AÑOS",values = c("red", "blue", "green","yellow","pink","33CCFF", "brown","3366FF"))+
+ ggtitle('Albatros Ceja Negra (Thalassarche melanophris)') +
+  scale_x_continuous(name ="LONGITUD")+
+  scale_y_continuous(name ="LATITUD")+
+   coord_sf(xlim = c(-70, -40), ylim = c(-60, -25), expand = FALSE)+
+     theme(legend.position = "right")
 
-ACN_orbi5 <- ACN_orbi4%>%  filter(LON > -70) 
-summary(ACN_orbi5$LON)
-ACN_orbi6 <- ACN_orbi5%>% filter(LON < -50) 
-
-
+#LAT> -60 & LAT< -25 & LON> -70 & LON< -40
